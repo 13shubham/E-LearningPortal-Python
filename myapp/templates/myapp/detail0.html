@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'myapp/style1.css' %}">
+    <title>Topic Detail View</title>
+</head>
+<body style="background-color: lightgray">
+<h2 align="center" class="container1">Detail View of the Topic: </h2>
+<table ellspacing="4", cellpadding="6", border="2px" class="center">
+    <th>Topic_Name</th>
+    <th>Length</th>
+    <th>Courses</th>
+    <tr><td align="center" rowspan="{{ course_length }}">{{ topic_list.name.upper}}</td>
+        <td align="center" rowspan="{{ course_length }}">{{ topic_list.length }}</td>
+    {% for course  in course_list %}
+                <td align="center"> {{ course}} </td></tr>
+            {% endfor %}
+</table>
+</body>
+</html>
+<hr />
+<p><a href="{% url 'myapp:index' %}">Click here to return to main page</a></p>

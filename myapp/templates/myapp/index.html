@@ -1,0 +1,13 @@
+{% extends 'myapp/base.html' %}
+{% load static %}
+{% block title %}Index page{% endblock %}
+<head><link rel="stylesheet" type="text/css" href="{% static 'myapp/style1.css' %}"></head>
+
+{% block body_block %}
+    <b><h3 class="about">This is an E-Learning Website!!!
+    <p>To place an order click <a href="{% url 'myapp:place_order'%}"> Here </a>OR Click on "Register" tab</p>
+    {% if last_login %}
+    <p> Last login: {{ last_login }} </p>
+    {% endif %}
+    </h3></b>
+{% endblock %}

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+     <link rel="stylesheet" type="text/css" href="{% static 'myapp/style1.css' %}">
+    <meta charset="UTF-8">
+    <title>About Web Page</title>
+</head>
+<body style="background-color: lightgray">
+<b><h3 class="container1" style="text-align: center">This is an E-learning Website! Search our Topics to find all available Courses</h3></b>
+</body>
+</html>
+<hr />
+<p><a href="{% url 'myapp:index' %}">Click here to return to main page</a></p>
+<p><a href="/myapp">Click here to return to main page(hardcoded URL)</a></p>

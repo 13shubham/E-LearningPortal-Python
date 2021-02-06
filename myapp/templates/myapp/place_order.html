@@ -1,0 +1,14 @@
+{% extends 'myapp/base.html' %}
+{% load static %}
+{% block title %}Order page{% endblock %}
+<head>
+        <link rel="stylesheet" type="text/css" href="{% static 'myapp/style1.css' %}">
+</head>
+{% block body_block %}
+  <div class="place_order"><form action="{% url 'myapp:place_order'%}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" name="submit1" value="Place Order" />
+    </form></div>
+
+{% endblock %}

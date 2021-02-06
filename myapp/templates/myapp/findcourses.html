@@ -1,0 +1,14 @@
+{% extends 'myapp/base.html' %}
+{% load static %}
+{% block title %}FindCourse page{% endblock %}
+<head>
+        <link rel="stylesheet" type="text/css" href="{% static 'myapp/style1.css' %}"/>
+</head>
+{% block body_block %}
+  <div class="find_course">  <form action="{% url 'myapp:findcourses' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" name="submit1" value="Find Courses" />
+  </form></div>
+
+{% endblock %}

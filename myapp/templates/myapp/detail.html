@@ -1,0 +1,23 @@
+{% extends 'myapp/base.html' %}
+{% load static %}
+{% block title %}Detail page{% endblock %}
+<head>
+        <link rel="stylesheet" type="text/css" href="{% static 'myapp/style1.css' %}">
+    </head>
+{% block body_block %}
+    <div class="tab_content">
+<h3 align="center">Detail View of the Topic:
+<table cellspacing="4", cellpadding="6", border="2px">
+    <th>Topic_Name</th>
+    <th>Length</th>
+    <th>Courses</th>
+    <tr><td align="center" rowspan="{{ course_length }}">{{ topic_list.name.upper}}</td>
+        <td align="center" rowspan="{{ course_length }}">{{ topic_list.length }}</td>
+    {% for course  in course_list %}
+                <td align="center"> {{course}} </td></tr>
+            {% endfor %}
+</table>
+</h3>
+    </div>
+{% endblock %}
+<hr />

@@ -1,0 +1,14 @@
+{% extends 'myapp/base.html' %}
+{% load static %}
+{% block title %}Order Response page{% endblock %}
+<head>
+        <link rel="stylesheet" type="text/css" href="{% static 'myapp/style1.css' %}">
+</head>
+{% block body_block %}
+
+<b><h3 class="about">Congratulations!!!Your Order has been placed!</h3>
+    <p> please click here to submit the review <a href="{% url 'myapp:review' %}">Review</a></p>
+</b>
+
+{% endblock %}
+<hr />

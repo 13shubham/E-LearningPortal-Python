@@ -1,0 +1,29 @@
+{% extends 'myapp/base.html' %}
+{% load static %}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+        <link rel="stylesheet" type="text/css" href="{% static 'myapp/style1.css' %}">
+</head>
+{% block body_block %}
+    <div class="my_account">
+    <h2>Hello <u>{{ first_name }} {{ last_name }}</u></h2>
+        <div>
+            <img src="{{ url }}" style="width: 10rem; height: 10rem;  float: right; margin-right: 10px; margin-top: -3rem"/>
+        </div>
+    <p> Your topics and resgistered courses are followed as:
+        <div class="row" style="margin-bottom: 20%">
+            <div class="column" style="background-color:#aaa;">
+            <h3> Topics </h3>
+            {% for topic in topics %}
+                <li> {{ topic }} </li>
+            {% endfor %}
+            </div>
+            <div class="column" style="background-color:#aaa;">
+               <h3> Registered Courses </h3>
+                {% for course in courses %}
+                    <li> {{ course }} </li>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

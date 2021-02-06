@@ -1,0 +1,32 @@
+{% extends 'myapp/base.html' %}
+{% block body_block %}
+    <div >
+        <p><b>Full Name : </b>{{ user.first_name }} {{ user.last_name }}</p>
+
+        <br/>
+        {% if orders %}
+            <h2>Orders Placed:</h2>
+            {% for order in orders %}
+                <p> Order No. {{ forloop.counter }}</p>
+                <p>Order Status: {{ order.order_status }}</p>
+                <p>Order Date: {{ order.order_date }}</p>
+                <p>Total Cost: {{ order.total_cost }}</p>
+                <table>
+                    <tr>
+                        <td><b>No.</b></td>
+                        <td><b>Course Name</b></td>
+                    </tr>
+                    {% for course in order.courses.all %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ course }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+                <hr/>
+            {% endfor %}
+        {% else %}
+            <p> There are no orders placed!!</p>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'myapp/style1.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <title>E-Learning WebApp - {% block title %}Welcome!{% endblock %}</title>
+    </head>
+    <body>
+        <div>
+            {% block myhdg %}
+<div class="wrapper">
+    <nav class="navbar">
+          <img class="header_logo" src="{% static 'myapp/image/logo.jpg' %}" onclick="window.open({% url 'myapp:index'%})" class="img" alt="logo"/>
+            <div class="header_search">
+                <form action="">
+                  <input type="text" placeholder="Search.." name="search">
+                  <button type="submit"><i class="fa fa-search"></i></button>
+                </form>
+             </div>
+            <li><a href="{% url 'myapp:index' %}">Home</a></li>
+            <li><a href="{% url 'myapp:about' %}">About</a></li>
+            <li class="dropdown">
+                <button class="dropbtn">Topics
+                      <i class="fa fa-caret-down"></i>
+                </button>
+                {% if top_list %}
+                    <div class="topic_content">
+                        {% for top  in top_list %}
+
+                            <a href="/myapp/{{ top.id }}" >{{ top.name}} </a>
+
+                        {% endfor %}
+                    </div>
+                {% else %}
+                {% endif %}
+            </li>
+            <li><a href="{% url 'myapp:findcourses' %}">Courses</a></li>
+            <li><a href="{% url 'myapp:place_order' %}">Register</a></li>
+            <li><a href="{% url 'myapp:review' %}">Review</a></li>
+            <li class="dropdown">
+                <button style="cursor: pointer" class="dropbtn" onclick="location.href='{% url 'myapp:login' %}'">Sign In
+                      <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="topic_content">
+                    {% if user.is_authenticated %}
+                   <a href="{% url 'myapp:myaccount' %}">My Account</a>
+                        <a href="{% url 'myapp:myorders' %}">My Orders</a>
+                     {% endif %}
+                    <a href="{% url 'myapp:register_user' %}">Register</a>
+                    <a href="{% url 'myapp:logout' %}">Sign Out</a>
+                </div>
+            </li>
+    </nav>
+<!--End of Nav bar -->
+    {% endblock %}
+        {% if user.is_authenticated %}
+            Hello {{ user.first_name }}
+        {% else %}
+            Hello User
+        {% endif %}
+             {% block body_block %}
+             {% endblock %}
+</div>
+        <div>
+    <footer>
+    {% if user.is_authenticated %}
+         <table class="table">
+         <tr>
+                                <td><input type="hidden" name="next" value=""></td>
+                                 <button style="cursor: pointer" class="btn btn-outline-secondary" onclick="location.href='{% url 'myapp:logout' %}'">Log Out</button></td>
+                            </tr>
+          </table>
+    {% else %}
+        <table class="table">
+        <tr>
+            <td><input type="hidden" name="next" value=""></td>
+         <td><button style="cursor: pointer" class="btn btn-outline-secondary" onclick="location.href='{% url 'myapp:login' %}'">Login</button></td>
+           <td><button style="cursor: pointer" class="btn btn-outline-secondary" onclick="location.href='{% url 'myapp:register_user' %}'">Register Here</button></td>
+            </tr>
+          </table>
+    {% endif %}
+
+    </footer>
+         </div>
+        </div>
+    </body>
+</html>
